@@ -1,0 +1,26 @@
+class SavingAccount extends BankAccount {
+    private double interestRate; // Lãi suất
+
+    public SavingAccount(String accountNumber, double initialBalance, double interestRate) {
+        super(accountNumber, initialBalance);
+        this.interestRate = interestRate;
+    }
+
+    // Rút tiền (Saving account không được rút quá số dư)
+    @Override
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn $" + amount + " from Saving Account. Remaining balance: $" + balance);
+        } else {
+            System.out.println("Invalid withdraw amount or insufficient funds.");
+        }
+    }
+
+    // Tính lãi
+    public void applyInterest() {
+        double interest = balance * (interestRate / 100);
+        balance += interest;
+        System.out.println("Interest applied: $" + interest + ". New balance: $" + balance);
+    }
+}
