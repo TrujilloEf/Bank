@@ -1,0 +1,21 @@
+public class Main {
+    public static void main(String[] args) {
+        // Tạo tài khoản Tiết kiệm
+        SavingAccount saving = new SavingAccount("SA123", 5000, 5);
+        saving.displayBalance();
+        saving.deposit(1000);
+        saving.applyInterest();
+        saving.withdraw(3000);
+        saving.displayBalance();
+
+        System.out.println("----------------------");
+
+        // Tạo tài khoản Thanh toán
+        CheckingAccount checking = new CheckingAccount("CA456", 2000, 1000);
+        checking.displayBalance();
+        checking.withdraw(2500); // Thấu chi hợp lệ
+        checking.withdraw(1000); // Thấu chi vượt mức, từ chối
+        checking.deposit(500);
+        checking.displayBalance();
+    }
+}
