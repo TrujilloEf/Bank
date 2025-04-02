@@ -1,0 +1,38 @@
+// Interface quy định các phương thức cơ bản cho tài khoản
+interface AccountOperations {
+    void deposit(double amount);
+    void withdraw(double amount);
+    void displayBalance();
+}
+
+// Lớp trừu tượng BankAccount
+abstract class BankAccount implements AccountOperations {
+    protected String accountNumber;
+    protected double balance;
+
+    public BankAccount(String accountNumber, double initialBalance) {
+        this.accountNumber = accountNumber;
+        this.balance = initialBalance;
+    }
+
+    // Triển khai phương thức gửi tiền chung
+    @Override
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited $" + amount + ". New balance: $" + balance);
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+
+    // Hiển thị số dư
+    @Override
+    public void displayBalance() {
+        System.out.println("Account " + accountNumber + " balance: $" + balance);
+    }
+
+    // Phương thức trừu tượng, các lớp con phải triển khai
+    @Override
+    public abstract void withdraw(double amount);
+}
