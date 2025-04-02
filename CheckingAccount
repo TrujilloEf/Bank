@@ -1,0 +1,19 @@
+class CheckingAccount extends BankAccount {
+    private double overdraftLimit; // Hạn mức thấu chi
+
+    public CheckingAccount(String accountNumber, double initialBalance, double overdraftLimit) {
+        super(accountNumber, initialBalance);
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    // Rút tiền (Cho phép thấu chi)
+    @Override
+    public void withdraw(double amount) {
+        if (amount > 0 && (balance - amount >= -overdraftLimit)) {
+            balance -= amount;
+            System.out.println("Withdrawn $" + amount + " from Checking Account. Remaining balance: $" + balance);
+        } else {
+            System.out.println("Withdrawal denied. Exceeds overdraft limit.");
+        }
+    }
+}
